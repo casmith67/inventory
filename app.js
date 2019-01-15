@@ -3,7 +3,7 @@ const bodyParser = require("body-parser");
 const { check } = require("express-validator/check");
 const utils = require("./scripts/utilities");
 const router = require("./scripts/login");
-const router2 = require("./scripts/register");
+const router2 = require("./controllers/user_registration");
 
 const app = express();
 

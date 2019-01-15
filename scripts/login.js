@@ -8,7 +8,7 @@ const router = express.Router();
 router.use(bodyParser.urlencoded());
 
 router.get("/login", (req, res) => {
-  res.sendFile(path.resolve(__dirname + "/../login.html"));
+  res.sendFile(path.resolve(__dirname + "/../views/login.html"));
 });
 
 router.post("/login", (req, res) => {
@@ -16,10 +16,10 @@ router.post("/login", (req, res) => {
   let password = req.body.password;
 
   let sql = `SELECT password FROM users WHERE username="${username}"`;
-  conn.query(sql, function(err, result) {
+  conn.query(sql, function (err, result) {
     if (err) throw err;
     let dbPass = result[0].password;
-    bcrypt.compare(password, dbPass, function(err, hashCompare) {
+    bcrypt.compare(password, dbPass, function (err, hashCompare) {
       if (err) throw err;
       if (hashCompare) {
         res.send("Logging you in!");
