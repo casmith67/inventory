@@ -1,9 +1,8 @@
 const express = require("express");
-const bodyParser = require("body-parser");
-const { check } = require("express-validator/check");
-const utils = require("./scripts/utilities");
 const router = require("./controllers/user_login");
 const router2 = require("./controllers/user_registration");
+const path = require("path");
+const login = require("./models/login");
 
 const app = express();
 
@@ -12,8 +11,8 @@ app.use("/", router);
 app.use("/", router2);
 
 // Home page
-app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/index.html");
+app.get("/", login.isUserLoggedIn, (req, res) => {
+  console.log("Home " + req.session.loggedIn);
 });
 
 app.listen(3000);
