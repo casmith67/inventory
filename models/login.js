@@ -26,12 +26,3 @@ module.exports.authenticateUser = function(req, res) {
     }
   });
 };
-
-module.exports.isUserLoggedIn = function(req, res) {
-  if (req.session.loggedIn) {
-    res.send("I see that you're already logged in!");
-    return true;
-  } else {
-    res.sendFile(path.resolve(__dirname + "/../index.html"));
-  }
-};
