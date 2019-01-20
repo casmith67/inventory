@@ -7,7 +7,7 @@ function verifyCredentials(res, req, passToCompare) {
     if (err) throw err;
     if (success) {
       req.session.loggedIn = true;
-      res.redirect("/");
+      res.send("You have successfully logged in");
     } else {
       res.send("Invalid password");
     }

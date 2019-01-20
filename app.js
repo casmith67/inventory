@@ -1,20 +1,20 @@
 const express = require("express");
-const router = require("./controllers/user_login");
-const router2 = require("./controllers/user_registration");
-const router3 = require("./controllers/inventory");
-const path = require("path");
-const login = require("./models/login");
+const loginRouter = require("./controllers/user_login");
+const registerRouter = require("./controllers/user_registration");
+const inventoryRouter = require("./controllers/user_inventory");
 
 const app = express();
 
 // Use routes
-app.use("/", router);
-app.use("/", router2);
-app.use("/", router3);
+app.use("/", loginRouter);
+app.use("/", registerRouter);
+app.use("/", inventoryRouter);
+
+app.set("view engine", "pug");
 
 // Home page
 app.get("/", (req, res) => {
-  res.sendFile(path.resolve(__dirname + "/index.html"));
+  res.render("index");
 });
 
 app.listen(3000);

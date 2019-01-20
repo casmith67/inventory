@@ -9,7 +9,7 @@ const register = require("../models/register");
 router.use(bodyParser.urlencoded());
 
 router.get("/register", (req, res) => {
-  res.sendFile(path.resolve(__dirname + "/../views/register.html"));
+  res.render("register");
 });
 
 router.post("/register", (req, res) => {

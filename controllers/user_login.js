@@ -21,7 +21,7 @@ router.use(
 router.use("/", bodyParser.urlencoded());
 
 router.get("/login", (req, res) => {
-  res.sendFile(path.resolve(__dirname + "/../views/login.html"));
+  res.render("login");
 });
 
 router.post("/login", (req, res) => {

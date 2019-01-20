@@ -1,3 +1,6 @@
+const dotenv = require("dotenv");
+dotenv.config({ path: __dirname + "../dbconfig.env" });
+
 // Module imports
 const mysql = require("mysql");
 
