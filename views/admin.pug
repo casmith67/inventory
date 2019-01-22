@@ -6,5 +6,8 @@ html
   body
     if access 
         a(href=`/user/${id}/adminPanel/userManagement`) Admin panel
+        for user in users
+            if user != undefined 
+                h1 Username: #{user[0]}
     else 
         h2 Sorry, you are only a user 

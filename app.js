@@ -3,6 +3,7 @@ const loginRouter = require("./controllers/user_login");
 const registerRouter = require("./controllers/user_registration");
 const inventoryRouter = require("./controllers/user_inventory");
 const adminRouter = require("./controllers/admin_panel");
+const userManagementRouter = require("./controllers/user_management");
 
 const app = express();
 
@@ -11,6 +12,7 @@ app.use("/", loginRouter);
 app.use("/", registerRouter);
 app.use("/", inventoryRouter);
 app.use("/", adminRouter);
+app.use("/", userManagementRouter);
 
 app.set("view engine", "pug");
 
