@@ -1,12 +1,11 @@
 const express = require("express");
-const login = require("../models/login");
 const bodyParser = require("body-parser");
-const path = require("path");
+
 const router = express.Router();
 
 router.all("/", bodyParser.urlencoded());
 
-router.get("/inventory", (req, res) => {
+router.get("/user/:id/inventory", (req, res) => {
   if (req.session.loggedIn) {
     res.render("inventory");
   } else {

@@ -1,0 +1,10 @@
+doctype html
+html
+ head
+  title Admin Page
+  
+  body
+    if access 
+        a(href=`/user/${id}/adminPanel/userManagement`) Admin panel
+    else 
+        h2 Sorry, you are only a user 

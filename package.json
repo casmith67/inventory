@@ -1,11 +1,12 @@
 {
   "name": "inventory",
   "version": "1.0.0",
-  "description": "",
+  "description": "--- # project work schedule Saturday - Wednesday   from 6:00PM - 10:00 PM Central Standard Time",
   "main": "index.js",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
+    "cookie-parser": "^1.4.3",
     "dotenv": "^6.2.0",
     "express": "^4.16.4",
     "express-session": "^1.15.6",
@@ -18,5 +19,13 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/casmith67/inventory.git"
+  },
+  "bugs": {
+    "url": "https://github.com/casmith67/inventory/issues"
+  },
+  "homepage": "https://github.com/casmith67/inventory#readme"
 }

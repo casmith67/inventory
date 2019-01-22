@@ -13,6 +13,9 @@ html
       a(href='/register') Register 
       |
       | 
-      a(href='/inventory') Inventory 
+      a(href=`user/${id}/inventory`) Inventory 
+      |
+      |
+      a(href='/admin') Admin
       if loggedIn
         p You're logged in as #{username}!

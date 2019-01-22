@@ -1,11 +1,13 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const path = require("path");
 const session = require("express-session");
+const cookieParser = require("cookie-parser");
 
 const router = express.Router();
 
 const login = require("../models/login");
+
+router.use(cookieParser());
 
 router.use(
   session({

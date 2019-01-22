@@ -1,20 +1,21 @@
 const conn = require("./utilities");
 const bcrypt = require("bcryptjs");
 
-function addUser(res, username, hash, age) {
-  let sql = `INSERT INTO users(username, password, userAge) VALUES('${username}', '${hash}', '${age}')`;
+function addUser(req, res, username, hash, age) {
+  req.session.loggedIn = true;
+  let sql = `INSERT INTO users(username, password, age) VALUES('${username}', '${hash}', '${age}')`;
   conn.query(sql, function(err, result) {
-    if (err) throw err;
+    if (err) console.log(err);
     res.render("index", {
       username: username
     });
   });
 }
 
-function hashPassword(res, username, password, age) {
+function hashPassword(req, res, username, password, age) {
   bcrypt.hash(password, 10, function(err, hash) {
-    if (err) throw err;
-    addUser(res, username, hash, age);
+    if (err) console.log(err);
+    addUser(req, res, username, hash, age);
   });
 }
 
@@ -24,8 +25,9 @@ module.exports.CheckForDuplicates = function(req, res) {
   let age = req.body.age;
   let sql = `SELECT username FROM users WHERE username='${username}'`;
   conn.query(sql, function(err, result) {
+    console.log(result);
     if (result == "") {
-      hashPassword(res, username, password, age);
+      hashPassword(req, res, username, password, age);
     } else {
       res.send("You currently have an account with us!");
     }
