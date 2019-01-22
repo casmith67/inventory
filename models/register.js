@@ -7,7 +7,8 @@ function addUser(req, res, username, hash, age) {
   conn.query(sql, function(err, result) {
     if (err) console.log(err);
     res.render("index", {
-      username: username
+      username: username,
+      success: true
     });
   });
 }
