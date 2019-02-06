@@ -1,5 +1,4 @@
 const express = require("express");
-const bodyParser = require('body-parser');
 const router = express.Router();
 
 const getUserArray = require("../models/user_management");
