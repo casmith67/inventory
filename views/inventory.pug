@@ -4,5 +4,14 @@ html
     title Inventory
   
   body 
-     ul 
-      li=age
+     h1=supplies
+     script.
+      var getAdd = function() {
+        return add = true;
+      }
+     
+     button(onclick='getAdd()') Add Item
+     if add
+      p You are adding an item
+     else 
+      p You are not adding an item

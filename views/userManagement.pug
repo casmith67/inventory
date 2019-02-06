@@ -6,15 +6,17 @@ html
     body
         if access 
             table .users
-	 	tr
-			th Username
-                	th Age 
-            each user in users
-            	if user 
-			tr
-	                th=user[0]
-        	        th=user[1]
-                	hr
-
+            tr
+                th Username
+                th Age 
+                br
+                each user in users
+                    if user 
+                        tr
+                        th=user[0]
+                        |
+                        |
+                        th=user[1]
+                        hr
         else
             h2 You don't have access! 

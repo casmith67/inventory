@@ -8,14 +8,11 @@ html
   body
     .container
       a(href='/login') Login
-      |
-      |
+      br
       a(href='/register') Register 
-      |
-      | 
+      br
       a(href=`user/${id}/inventory`) Inventory 
-      |
-      |
+      br
       a(href='/admin') Admin
       if loggedIn
         p You're logged in as #{username}!
