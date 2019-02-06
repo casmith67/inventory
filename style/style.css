@@ -7,3 +7,14 @@ a {
   display: grid;
   grid-template: repeat(4, 5px) / 1fr;
 }
+
+tr {
+    border: 2px solid black;
+    display: grid;
+    grid-template: 1fr / repeat(4, 1fr);
+    margin-top: 5px;
+}
+
+th {
+    border: 1px solid black;
+}

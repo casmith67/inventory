@@ -33,8 +33,9 @@ module.exports.authenticateUser = function(req, res) {
         username: username,
         age: result[0].userAge,
         role: result[0].role,
-        id: result[0].id
+        id: result[0].userID
       };
+
       verifyCredentials(res, req, result[0].password, user);
     } else {
       res.send("You don't have an account with us!");

@@ -4,19 +4,29 @@ let sql = `SELECT * FROM supplies`;
 
 let supplies = new Array();
 
-function runQuery() {
+conn.query(sql, (err, result) => {
+  if (err) console.log(err);
+
+  for (let i = 0; i < result.length; i++) {
+    if (result) {
+      supplies.push(result[i])
+    }
+  }
+
+  module.exports.grabSupplies = function() {
+    console.log(supplies)
+    return supplies;
+  }
+});
+
+module.exports.updateSupplies = (supplyName, supplyDesc, supplyCount) => {
+  let conn = require("../models/inventory_credentials");
+
+  let sql = `INSERT INTO supplies(item_name, item_desc, item_count) VALUES('${supplyName}', '${supplyDesc}', ${supplyCount})`
+    
   conn.query(sql, (err, result) => {
     if (err) console.log(err);
 
-    for (let i = 0; i < result.length; i++) {
-      if (result) {
-        supplies[i] = [];
-        supplies[i].push(result[0].item_number);
-      }
-    }
+    console.log("Item succesfully added")
   });
 }
-
-module.exports.grabSupplies = function(req, res) {
-  runQuery();
-};

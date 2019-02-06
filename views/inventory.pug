@@ -1,17 +1,33 @@
-doctype html
 html
-  head  
-    title Inventory
-  
-  body 
-     h1=supplies
-     script.
-      var getAdd = function() {
-        return add = true;
-      }
-     
-     button(onclick='getAdd()') Add Item
-     if add
-      p You are adding an item
-     else 
-      p You are not adding an item
+    head
+        title Inventory
+        link(rel='stylesheet', href='/style/style.css')
+
+    body 
+        table
+            tr
+                th Item Number 
+                th Item Name
+                th Item Description 
+                th Quantity
+            each k, v in supplies
+                tr 
+                    th=supplies[v].item_number
+                    th=supplies[v].item_name
+                    th=supplies[v].item_desc
+                    th=supplies[v].item_count
+
+        form(action=`http://68.183.17.93:3000/user/${id}/inventory` method='POST')
+            label(for='supplyName') Supply Name
+            input(name='supplyName', value='', type='text')
+            br
+            label(for='description') Description 
+            input(name='description', value='', type='text')
+            br
+            label(for='quantity') Quantity
+            input(name='quantity', value='', type='text')
+            br
+            input(value='Submit', type='submit')
+
+        if item 
+            p Succesfully added #{item}

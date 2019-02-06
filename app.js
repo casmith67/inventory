@@ -8,11 +8,13 @@ const userManagementRouter = require("./controllers/user_management");
 const app = express();
 
 // Use routes
-app.use("/", loginRouter);
-app.use("/", registerRouter);
+app.use("/", loginRouter);     
+app.use("/", registerRouter);  
 app.use("/", inventoryRouter);
 app.use("/", adminRouter);
 app.use("/", userManagementRouter);
+
+app.use('/style', express.static(__dirname + '/style'))
 
 app.set("view engine", "pug");
 
