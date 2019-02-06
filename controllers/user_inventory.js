@@ -1,5 +1,4 @@
 const express = require("express");
-const bodyParser = require("body-parser");
 const inventory = require("../models/inventory");
 
 const router = express.Router();
