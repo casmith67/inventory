@@ -1,6 +1,7 @@
 const express = require("express");
 const inventory = require("../models/inventory");
 const addItem = require('../models/addItem')
+const removeItem = require('../models/removeItem')
 const bodyParser = require('body-parser')
 
 const router = express.Router();
@@ -27,6 +28,8 @@ router.get("/user/:id/inventory", (req, res) => {
 });
 
 router.post('/user/addInventoryItem', (req, res) => {
+
+  let supplyName = req.body.supplyName;
   // Send office supplies to user's browser
   addItem.updateInventory((err, result) => {
     if (err) {
@@ -38,7 +41,21 @@ router.post('/user/addInventoryItem', (req, res) => {
         })
       })
     }
-  }, req.body.supplyName, req.body.description, req.body.quantity)
+  }, supplyName, req.body.description, req.body.quantity)
+
+})
+
+router.post('/inventory/removeItem', (req, res) => {
+
+  let item_number = req.body.item_number;
+  removeItem.removeItem((err, result) => {
+    if (err) console.log(err);
+    inventory.getSupplies((err, result) => {
+      res.render('inventory', {
+        supplies: result
+      })
+    })
+  }, item_number)
 
 })
 

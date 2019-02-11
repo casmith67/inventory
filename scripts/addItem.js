@@ -1,25 +1,40 @@
-$(function () {
-    $('#submit').on('click', function (e) {
-        let $supplyName = $('#supplyName')
-        let $description = $('#description')
-        let $quantity = $('#quantity')
-        e.preventDefault();
-        $.ajax({
-            url: '/user/addInventoryItem',
-            type: 'POST',
-            contentType: 'application/json',
-            data: JSON.stringify({
-                supplyName: $supplyName.val(),
-                description: $description.val(),
-                quantity: $quantity.val()
-            }),
-            success: function () {
-                location.reload();
-            },
+function isEmpty(val) {
+    if (val === "") {
+        return true;
+    }
 
-            error: function (err) {
-                console.log(err)
-            }
-        })
+    return false;
+}
+
+$(function () {
+
+    $('#submit').on('click', function (e) {
+        e.preventDefault();
+
+        let $supplyName = $('#supplyName').val();
+        let $description = $('#description').val();
+        let $quantity = $('#quantity').val();
+
+        if (isEmpty($supplyName) || isEmpty($description) || isEmpty($quantity)) {
+            $('#error-msg').html('Error: empty value was entered')
+            return false;
+        } else {
+            $.ajax({
+                url: '/user/addInventoryItem',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    supplyName: $supplyName,
+                    description: $description,
+                    quantity: $quantity
+                }),
+
+                success: function () {
+                    location.reload();
+                },
+            })
+        }
+
     })
+
 })

@@ -1,6 +1,5 @@
 a {
   text-decoration: none;
-  border: 1px solid black;
   width: 130px;
   height: 30px;
   text-align: center;
@@ -11,10 +10,15 @@ a {
 tr {
     border: 2px solid black;
     display: grid;
-    grid-template: 1fr / repeat(4, 1fr);
+    grid-template: 1fr / repeat(5, 1fr);
     margin-top: 5px;
 }
 
 th {
     border: 1px solid black;
+}
+
+th input {
+    height: 23px;
+    background-color: (255,255,255,0)
 }

@@ -10,12 +10,17 @@ html
                 th Item Name
                 th Item Description 
                 th Quantity
-            each k, v in supplies
-                tr 
-                    th=supplies[v].item_number
-                    th=supplies[v].item_name
-                    th=supplies[v].item_desc
-                    th=supplies[v].item_count
+                th Delete Entry
+
+            if supplies
+                each k, v in supplies
+                    tr 
+                        th(id='item_number')=supplies[v].item_number
+                        th=supplies[v].item_name
+                        th=supplies[v].item_desc
+                        th=supplies[v].item_count
+                        th 
+                            input(type='submit' value='Remove' id='removeItem')
 
         form(action=`http://68.183.17.93:3000/user/addInventoryItem` method='POST')
             label(for='supplyName') Supply Name
@@ -31,6 +36,9 @@ html
 
         if item 
             p Succesfully added #{item}
+
+        p(id="error-msg")
         
         script(src="https://code.jquery.com/jquery-3.3.1.min.js")
         script(src='/scripts/addItem.js')
+        script(src='/scripts/removeItem.js')
