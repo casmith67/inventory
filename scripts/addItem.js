@@ -14,7 +14,7 @@ $(function () {
                 quantity: $quantity.val()
             }),
             success: function () {
-                console.log("added")
+                location.reload();
             },
 
             error: function (err) {

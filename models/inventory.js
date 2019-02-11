@@ -1,15 +1,15 @@
 const conn = require("../models/inventory_credentials");
 
-module.exports.getSupplies = function (callback) {
+module.exports.getSupplies = (cb) => {
 
   // SQL query
   let sql = `SELECT * FROM supplies`;
 
-  conn.query(sql, (err, result) => {
+  conn.query(sql, function (err, result) {
     if (err) {
-      callback(err, null)
+      cb(err, null)
     } else {
-      callback(null, result);
+      cb(null, result)
     }
   });
 

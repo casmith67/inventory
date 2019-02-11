@@ -1,14 +1,14 @@
 // Add supply to inventory
-module.exports.updateInventory = (supplyName, supplyDesc, supplyCount, callback) => {
-  let conn = require("../models/inventory_credentials");
+let conn = require("../models/inventory_credentials");
 
-  let sql = `INSERT INTO supplies(item_name, item_desc, item_count) VALUES('${supplyName}', '${supplyDesc}', ${supplyCount})`
+module.exports.updateInventory = function (callback, supplyName, description, quantity) {
+  let sql = `INSERT INTO supplies(item_name, item_desc, item_count) VALUES('${supplyName}', '${description}', ${quantity})`
 
   conn.query(sql, (err, result) => {
     if (err) {
-      callback(err, null)
+      callback(err, null);
     } else {
-      callback(null, result)
+      callback(null, result);
     }
-  });
+  })
 }

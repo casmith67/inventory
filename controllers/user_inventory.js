@@ -28,16 +28,17 @@ router.get("/user/:id/inventory", (req, res) => {
 
 router.post('/user/addInventoryItem', (req, res) => {
   // Send office supplies to user's browser
-  addItem.updateInventory(req.body.supplyName, req.body.description, req.body.quantity, (err, result) => {
+  addItem.updateInventory((err, result) => {
     if (err) {
       console.log(err)
     } else {
-      res.render('inventory', {
-        supplies: inventory.getSupplies(),
-        id: req.params.id
+      inventory.getSupplies((err, result) => {
+        res.render('inventory', {
+          supplies: result
+        })
       })
     }
-  })
+  }, req.body.supplyName, req.body.description, req.body.quantity)
 
 })
 

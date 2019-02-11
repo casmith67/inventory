@@ -2,7 +2,7 @@ const conn = require("./utilities");
 const bcrypt = require("bcryptjs");
 
 function verifyCredentials(res, req, passToCompare, user) {
-  bcrypt.compare(req.body.password, passToCompare, function(err, success) {
+  bcrypt.compare(req.body.password, passToCompare, function (err, success) {
     if (err) console.log(err);
     if (success) {
       req.session.loggedIn = true;
@@ -23,10 +23,10 @@ function verifyCredentials(res, req, passToCompare, user) {
   });
 }
 
-module.exports.authenticateUser = function(req, res) {
+module.exports.authenticateUser = function (req, res) {
   let username = req.body.username;
   let sql = `SELECT userID, password, age, role FROM users WHERE username='${username}'`;
-  conn.query(sql, function(err, result) {
+  conn.query(sql, function (err, result) {
     if (err) console.log(err);
     if (result != "") {
       let user = {
