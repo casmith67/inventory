@@ -17,17 +17,20 @@ html
                     th=supplies[v].item_desc
                     th=supplies[v].item_count
 
-        form(action=`http://68.183.17.93:3000/user/${id}/inventory` method='POST')
+        form(action=`http://68.183.17.93:3000/user/addInventoryItem` method='POST')
             label(for='supplyName') Supply Name
-            input(name='supplyName', value='', type='text')
+            input(name='supplyName', value='', type='text' id='supplyName')
             br
             label(for='description') Description 
-            input(name='description', value='', type='text')
+            input(name='description', value='', type='text' id='description')
             br
             label(for='quantity') Quantity
-            input(name='quantity', value='', type='text')
+            input(name='quantity', value='', type='text' id='quantity')
             br
-            input(value='Submit', type='submit')
+            input(value='Submit', type='submit' id='submit')
 
         if item 
             p Succesfully added #{item}
+        
+        script(src="https://code.jquery.com/jquery-3.3.1.min.js")
+        script(src='/scripts/addItem.js')

@@ -1,32 +1,16 @@
-let conn = require("../models/inventory_credentials");
+const conn = require("../models/inventory_credentials");
 
-let sql = `SELECT * FROM supplies`;
+module.exports.getSupplies = function (callback) {
 
-let supplies = new Array();
+  // SQL query
+  let sql = `SELECT * FROM supplies`;
 
-conn.query(sql, (err, result) => {
-  if (err) console.log(err);
-
-  for (let i = 0; i < result.length; i++) {
-    if (result) {
-      supplies.push(result[i])
-    }
-  }
-
-  module.exports.grabSupplies = function() {
-    console.log(supplies)
-    return supplies;
-  }
-});
-
-module.exports.updateSupplies = (supplyName, supplyDesc, supplyCount) => {
-  let conn = require("../models/inventory_credentials");
-
-  let sql = `INSERT INTO supplies(item_name, item_desc, item_count) VALUES('${supplyName}', '${supplyDesc}', ${supplyCount})`
-    
   conn.query(sql, (err, result) => {
-    if (err) console.log(err);
-
-    console.log("Item succesfully added")
+    if (err) {
+      callback(err, null)
+    } else {
+      callback(null, result);
+    }
   });
+
 }
