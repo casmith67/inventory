@@ -2,9 +2,9 @@ $(function () {
 
     $('.removeItem').on('click', function (e) {
 
-        let $itemNumber = $('#item_number').html();
+        let $itemNumber = $('.item_number').html();
 
-        console.log($(this).closest('tr').attr('id'));
+        console.log($itemNumber);
         e.preventDefault();
 
         $.ajax({

@@ -15,7 +15,7 @@ html
             if supplies
                 each k, v in supplies
                     tr 
-                        th(id='item_number')=supplies[v].item_number
+                        th(class='item_number')=supplies[v].item_number
                         th=supplies[v].item_name
                         th=supplies[v].item_desc
                         th=supplies[v].item_count
