@@ -2,9 +2,10 @@ $(function () {
 
     $('.removeItem').on('click', function (e) {
 
-        let $itemNumber = $('.item_number').html();
+        let $itemNumber = $(this).closest('tr')
+            .find('.item_number')
+            .text();
 
-        console.log($itemNumber);
         e.preventDefault();
 
         $.ajax({
@@ -16,7 +17,7 @@ $(function () {
             }),
 
             success: function () {
-                //location.reload()
+                location.reload()
             }
         })
 
