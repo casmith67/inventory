@@ -6,9 +6,9 @@ function isEmpty(val) {
     return false;
 }
 
-$(function () {
+$(() => {
 
-    $('#submit').on('click', function (e) {
+    $('#addItem').on('click', function (e) {
         e.preventDefault();
 
         let $supplyName = $('#supplyName').val();
@@ -20,7 +20,7 @@ $(function () {
             return false;
         } else {
             $.ajax({
-                url: '/user/addInventoryItem',
+                url: '/inventory/addInventoryItem',
                 type: 'POST',
                 contentType: 'application/json',
                 data: JSON.stringify({
@@ -29,7 +29,7 @@ $(function () {
                     quantity: $quantity
                 }),
 
-                success: function () {
+                success: () => {
                     location.reload();
                 },
             })

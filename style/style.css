@@ -22,3 +22,8 @@ th input {
     height: 23px;
     background-color: (255,255,255,0)
 }
+
+#updateInventory .submit {
+    display: inline;
+    white-space: nowrap;
+}

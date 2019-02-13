@@ -1,6 +1,7 @@
 const express = require("express");
 const inventory = require("../models/inventory");
 const addItem = require('../models/addItem')
+const editItem = require('../models/editItem')
 const removeItem = require('../models/removeItem')
 const bodyParser = require('body-parser')
 
@@ -10,24 +11,25 @@ router.all("/", bodyParser.urlencoded());
 
 router.use(bodyParser.json())
 
+function getSupplies(res) {
+  inventory.getSupplies((err, result) => {
+    res.render('inventory', {
+      supplies: result
+    })
+  })
+}
+
 router.get("/user/:id/inventory", (req, res) => {
 
   if (req.session.loggedIn) {
-    inventory.getSupplies((err, result) => {
-      if (err) throw err;
-
-      res.render('inventory', {
-        supplies: result,
-        id: req.params.id
-      })
-    })
+    getSupplies(res)
   } else {
     res.send("You do not have access to this page.");
   }
 
 });
 
-router.post('/user/addInventoryItem', (req, res) => {
+router.post('/inventory/addInventoryItem', (req, res) => {
 
   let supplyName = req.body.supplyName;
   // Send office supplies to user's browser
@@ -35,26 +37,31 @@ router.post('/user/addInventoryItem', (req, res) => {
     if (err) {
       console.log(err)
     } else {
-      inventory.getSupplies((err, result) => {
-        res.render('inventory', {
-          supplies: result
-        })
-      })
+      getSupplies(res);
     }
   }, supplyName, req.body.description, req.body.quantity)
 
 })
 
-router.post('/inventory/removeItem', (req, res) => {
+router.post('/inventory/editInventoryItem', (req, res) => {
+  let itemNumber = req.body.itemNumber;
+
+  editItem.editInventory((err, result) => {
+    if (err) {
+      console.log(err)
+    } else {
+      getSupplies(res);
+    }
+  })
+
+})
+
+router.post('/inventory/removeInventoryItem', (req, res) => {
 
   let item_number = req.body.item_number;
   removeItem.removeItem((err, result) => {
     if (err) console.log(err);
-    inventory.getSupplies((err, result) => {
-      res.render('inventory', {
-        supplies: result
-      })
-    })
+    getSupplies(res);
   }, item_number)
 
 })

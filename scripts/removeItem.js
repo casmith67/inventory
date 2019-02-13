@@ -1,12 +1,14 @@
 $(function () {
 
-    $('#removeItem').on('click', function (e) {
+    $('.removeItem').on('click', function (e) {
 
         let $itemNumber = $('#item_number').html();
+
+        console.log($(this).closest('tr').attr('id'));
         e.preventDefault();
 
         $.ajax({
-            url: '/inventory/removeItem',
+            url: '/inventory/removeInventoryItem',
             type: 'POST',
             contentType: 'application/json',
             data: JSON.stringify({
@@ -14,7 +16,7 @@ $(function () {
             }),
 
             success: function () {
-                location.reload()
+                //location.reload()
             }
         })
 
