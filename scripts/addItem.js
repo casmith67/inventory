@@ -11,6 +11,7 @@ $(() => {
     $('#addItem').on('click', function (e) {
         e.preventDefault();
 
+        let $itemNumber = $('#itemNumber').val();
         let $supplyName = $('#supplyName').val();
         let $description = $('#description').val();
         let $quantity = $('#quantity').val();
@@ -24,6 +25,7 @@ $(() => {
                 type: 'POST',
                 contentType: 'application/json',
                 data: JSON.stringify({
+                    itemNumber: $itemNumber,
                     supplyName: $supplyName,
                     description: $description,
                     quantity: $quantity

@@ -30,16 +30,32 @@ router.get("/user/:id/inventory", (req, res) => {
 });
 
 router.post('/inventory/addInventoryItem', (req, res) => {
+  let itemNumber = req.body.itemNumber;
+  let itemExists = false;
 
-  let supplyName = req.body.supplyName;
+  inventory.getSupplies((err, result) => {
+    for (let i = 0; i < result.length; i++) {
+      // Does the entered item number match something in the database?
+      if (result[i].item_number == itemNumber) {
+        itemExists = true;
+        res.render('inventory', {
+          supplies: result,
+          itemExists: true
+        })
+      }
+    }
+  })
+
   // Send office supplies to user's browser
   addItem.updateInventory((err, result) => {
     if (err) {
       console.log(err)
     } else {
+      console.log("REEEE")
+      console.log(itemExists);
       getSupplies(res);
     }
-  }, supplyName, req.body.description, req.body.quantity)
+  }, req.body.itemNumber, req.body.supplyName, req.body.description, req.body.quantity)
 
 })
 

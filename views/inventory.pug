@@ -23,6 +23,10 @@ html
                             input(type='submit' value='Remove' class='removeItem')
 
         form(action=`/inventory/addInventoryItem` method='POST' id='updateInventory')
+            
+            label(for='itemNumber') Item Number
+            input(name='itemNumber', value='1', type='text', id='itemNumber')
+            br
             label(for='supplyName') Supply Name
             input(name='supplyName', value='', type='text' id='supplyName')
             br
@@ -32,7 +36,7 @@ html
             label(for='quantity') Quantity
             input(name='quantity', value='', type='text' id='quantity')
             br
-            input(value='Submit', type='submit' class='submit' id='addItem')
+            button(type='submit' class='submit' id='addItem') Add Item
         
         form(action=`/inventory/editInventoryItem` method='POST' id='editInventory')
             input(value='Edit' type='submit' class='submit' id='edit')
