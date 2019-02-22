@@ -1,12 +1,12 @@
 const dotenv = require("dotenv");
-dotenv.config({ path: __dirname + "../dbconfig.env" });
+dotenv.config({ path: __dirname + "/../dbconfig.env" });
 
 // Module imports
 const mysql = require("mysql");
 
 const DB_HOST = process.env.DB_HOST || "localhost";
-const DB_USER = process.env.DB_USER || "root";
-const DB_PASS = process.env.DB_PASS || "";
+const DB_USER = process.env.DB_USER || "USER_HERE";
+const DB_PASS = process.env.DB_PASS || "PASSWORD_HERE";
 const DB_NAME = process.env.DB_NAME || "mydatabase";
 
 const con = mysql.createConnection({

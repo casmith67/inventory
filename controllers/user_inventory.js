@@ -51,8 +51,6 @@ router.post('/inventory/addInventoryItem', (req, res) => {
     if (err) {
       console.log(err)
     } else {
-      console.log("REEEE")
-      console.log(itemExists);
       getSupplies(res);
     }
   }, req.body.itemNumber, req.body.supplyName, req.body.description, req.body.quantity)
@@ -68,7 +66,7 @@ router.post('/inventory/editInventoryItem', (req, res) => {
     } else {
       getSupplies(res);
     }
-  })
+  }, req.body.itemNumber, req.body.supplyName, req.body.description, req.body.quantity)
 
 })
 

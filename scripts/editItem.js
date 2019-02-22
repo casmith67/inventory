@@ -1,14 +1,28 @@
 $(() => {
-    $('#edit').on('click', (e) => {
+    $('.edit').on('click', (e) => {
         e.preventDefault();
 
-        let itemNumber = prompt('What is the item number for the entry you are inquiring about?', '1');
+        console.log("I was clicked")
+
+        let $itemNumber = $(this).closest('tr')
+            .find('.item_number')
+            .text();
+
+        let $supplyName = $('#supplyName').val();
+        let $description = $('#description').val();
+        let $quantity = $('#quantity').val();
+
+        console.log($('#supplyName').closest('label').find('.supplyName').val());
+
         $.ajax({
             url: '/inventory/editInventoryItem',
             type: 'POST',
             contentType: 'application/json',
             data: JSON.stringify({
-                itemNumber: itemNumber
+                itemNumber: $itemNumber,
+                supplyName: $supplyName,
+                description: $description,
+                quantity: $quantity
             }),
 
             success: () => {
